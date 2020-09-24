@@ -1,20 +1,25 @@
-const express = require("express"); // require가 하는 것: node module을 어딘가에서 가져오는 것
-const app = express(); //app 변수를 선언해서 express를 실행
+import express from "express";
+import morgan from "morgan";
+import helmet from "helmet";
+import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
+
+const app = express();
 
 const PORT = 4000;
 
-function handleListening() {
+const handleListening = () =>
   console.log(`Listening on: http://localhost:${PORT}`);
-}
 
-function handleHome(req, res) {
-  console.log(req);
-  res.send("Hello from home");
-}
+const handleHome = (req, res) => res.send("Hello from home");
 
-function handleProfile(req, res) {
-  res.send("You are on my profile");
-}
+const handleProfile = (req, res) => res.send("You are on my profile");
+
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(helmet());
+app.use(morgan("dev"));
 
 app.get("/", handleHome);
 
