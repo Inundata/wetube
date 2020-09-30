@@ -1,5 +1,5 @@
 //쪼개서 작성하기 위한(가독성) routes.js
-//쪼개야 기억하기가 좋음.
+// define the address
 
 // for Global
 const HOME = "/";
