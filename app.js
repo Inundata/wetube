@@ -11,13 +11,14 @@ import routes from "./routes";
 const app = express();
 //app을 express로 정의하고//
 
-app.use(cookieParser());
-app.use(bodyParser.json());
+app.set("view engine", "pug");
+app.use(cookieParser()); // checking the users
+app.use(bodyParser.json()); // check the info which sends by users
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(helmet());
-app.use(morgan("dev"));
+app.use(helmet()); // protect the application
+app.use(morgan("dev")); // logging the event of application
 
-app.use(routes.home, globalRouter); //가장 상위 router(url을 위함)
+app.use(routes.home, globalRouter); //the host Router
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
 
